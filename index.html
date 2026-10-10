@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gurumouli Restaurant</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff8ed;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 { color: #8b2500; }
+    .item {
+      background: white;
+      padding: 15px;
+      margin: 12px auto;
+      max-width: 350px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px #ddd;
+    }
+    button {
+      background: #198754;
+      color: white;
+      border: 0;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #order { font-size: 18px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Gurumouli Restaurant</h1>
+  <h2>Restaurant Order System</h2>
+
+  <div class="item">
+    <h3>Special Misal</h3>
+    <p>Price: ₹80</p>
+    <button onclick="addOrder('Special Misal', 80)">Add Order</button>
+  </div>
+
+  <div class="item">
+    <h3>Special Dal Baati</h3>
+    <p>Price: ₹120</p>
+    <button onclick="addOrder('Special Dal Baati', 120)">Add Order</button>
+  </div>
+
+  <div class="item">
+    <h3>Rice Plate</h3>
+    <p>Price: ₹100</p>
+    <button onclick="addOrder('Rice Plate', 100)">Add Order</button>
+  </div>
+
+  <h2>Your Bill</h2>
+  <div id="order">No orders yet</div>
+  <h3>Total: ₹<span id="total">0</span></h3>
+  <button onclick="printBill()">Print Bill</button>
+
+  <script>
+    let total = 0;
+    let orders = [];
+
+    function addOrder(name, price) {
+      orders.push(name + " - ₹" + price);
+      total += price;
+      document.getElementById("order").innerHTML =
+        orders.join("<br>");
+      document.getElementById("total").textContent = total;
+    }
+
+    function printBill() {
+      if (orders.length === 0) {
+        alert("Please add an order first!");
+        return;
+      }
+      window.print();
+    }
+  </script>
+</body>
+</html>
